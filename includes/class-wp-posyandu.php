@@ -124,6 +124,13 @@ class Wp_Posyandu {
 
 		$this->loader = new Wp_Posyandu_Loader();
 
+		// Functions tambahan
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-wp-posyandu-functions.php';
+
+		$this->functions = new Posyandu_Functions( $this->plugin_name, $this->version );
+
+		$this->loader->add_action('template_redirect', $this->functions, 'allow_access_private_post', 0);
+
 	}
 
 	/**
